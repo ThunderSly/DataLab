@@ -460,8 +460,7 @@ unsigned float_i2f(int x) {
   frac &= 0x7fffff;
   expo = 158 - count;
   expo <<= 23;
-  if ((x&0x80) && (((x & 0x7F) >0) || (frac & 1))){
-//  if (((x & 0xFF) > 127 ) || ((frac&1) && ((x&0x80)))) {
+  if (((x & 0xFF) > 128 ) || ((frac&1) && ((x&0x80)))) {
     frac += 1;
   }
   answer = signal + expo + frac;
